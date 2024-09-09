@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست پست‌ها</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f0ff; /* پس‌زمینه یاسی کم‌رنگ */
+            font-family: 'Vazirmatn', sans-serif;
+            direction: rtl;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .list-group-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #f9f9f9;
+            transform: translateY(-5px); /* افزودن جلوه جابجایی در هنگام hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .list-group-item h2 {
+            color: #007bff;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .list-group-item p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        .list-group-item .btn {
+            font-size: 1rem;
+            padding: 10px 30px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .list-group-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .empty-message {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #dc3545;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">لیست پست‌ها</h1>
+        <ul class="list-group">
+            {% for post in posts %}
+                <li class="list-group-item">
+                    <img src="{{ post.image_url }}" alt="{{ post.title }}">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.body|slice:200 }}...</p> <!-- خلاصه متن پست -->
+                    <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">ادامه مطلب</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item empty-message">هیچ پستی وجود ندارد!</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
