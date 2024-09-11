@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ویرایش پست</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>ایجاد پست جدید</title>
+    <!-- بارگذاری استاتیک فایل‌ها -->
+    {% load static %}
+    <!-- اضافه کردن Bootstrap و فونت‌ها -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -17,15 +20,14 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             padding: 40px;
-            max-width: 600px;
+            max-width: 800px;
             margin: 40px auto;
         }
-        h1 {
+        h2 {
             font-size: 2rem;
             font-weight: bold;
             color: #333333;
             margin-bottom: 30px;
-            text-align: center;
         }
         .form-control {
             border-radius: 8px;
@@ -42,19 +44,6 @@
             background-color: #0056b3;
             border-color: #004085;
         }
-        .btn-secondary {
-            font-size: 1rem;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin-left: 10px;
-            border: 1px solid #6c757d;
-            background-color: #ffffff;
-            color: #6c757d;
-        }
-        .btn-secondary:hover {
-            background-color: #f8f9fa;
-            color: #495057;
-        }
         .form-group {
             margin-bottom: 20px;
         }
@@ -69,13 +58,16 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>ویرایش پست</h1>
+        <h2>ایجاد پست جدید</h2>
         <form method="POST">
             {% csrf_token %}
+            <!-- فیلدهای فرم را نمایش می‌دهد -->
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
-            <a href="{% url 'post_list' %}" class="btn btn-secondary">بازگشت به لیست پست‌ها</a>
+            <button type="submit" class="btn btn-primary">ارسال</button>
         </form>
     </div>
+
+    <!-- اضافه کردن اسکریپت های Bootstrap -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

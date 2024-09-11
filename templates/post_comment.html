@@ -6,21 +6,69 @@
     <title>افزودن نظر</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://bootswatch.com/5/minty/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f0ff;
+            font-family: 'Vazirmatn', sans-serif;
+            direction: rtl;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .btn-secondary {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+        }
+        .form-control {
+            border-radius: 8px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
 
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <h2 class="card-title text-center">افزودن نظر به پست</h2>
+            <h2 class="card-title">افزودن نظر به پست</h2>
             
             <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
                     {{ form.as_p }}
                 </div>
-                <button type="submit" class="btn btn-primary">ارسال نظر</button>
-                <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-secondary">بازگشت به پست</a>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary me-2">ارسال نظر</button>
+                    <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-secondary">بازگشت به پست</a>
+                </div>
             </form>
         </div>
     </div>
