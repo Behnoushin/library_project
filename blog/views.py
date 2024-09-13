@@ -57,6 +57,7 @@ def post_delete(request,pk):
         post.delete()
         return redirect('post_list')
     return render(request, 'post_delete.html', {'post': post})
+
 @login_required
 def post_comment(request, id):
     post = get_object_or_404(Post, id=id)
@@ -70,13 +71,5 @@ def post_comment(request, id):
             return redirect('post_detail', id=post.id)
     else:
         form = CommentForm()
+        comments = post.comments.all()
     return render(request, 'post_comment.html', {'form': form})
-
-
-
-
-
-
-
-
-

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f0ff; /* پس‌زمینه یاسی کم‌رنگ */
+            background-color: #f8f0ff;
             font-family: 'Vazirmatn', sans-serif;
             direction: rtl;
         }
@@ -36,7 +36,7 @@
         }
         .list-group-item:hover {
             background-color: #f9f9f9;
-            transform: translateY(-5px); /* افزودن جلوه جابجایی در هنگام hover */
+            transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .list-group-item h2 {
@@ -49,18 +49,11 @@
             color: #6c757d;
             font-size: 1.1rem;
         }
-        .list-group-item .btn {
+        .btn {
             font-size: 1rem;
             padding: 10px 30px;
             border-radius: 8px;
             transition: background-color 0.3s ease;
-        }
-        .list-group-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .btn-primary {
             background-color: #007bff;
@@ -68,19 +61,22 @@
         }
         .btn-primary:hover {
             background-color: #0056b3;
-            border-color: #004085;
         }
-        .empty-message {
-            text-align: center;
-            font-size: 1.3rem;
-            color: #dc3545;
-            padding: 20px;
+        .btn-success {
+            background-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">لیست پست‌ها</h1>
+        
+        <!-- دکمه افزودن پست جدید -->
+        <a href="{% url 'post_create' %}" class="btn btn-success mb-4">افزودن پست جدید</a>
+        
         <ul class="list-group">
             {% for post in posts %}
                 <li class="list-group-item">

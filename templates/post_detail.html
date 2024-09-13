@@ -75,6 +75,35 @@
             background-color: #c82333;
             border-color: #bd2130;
         }
+        .comments-section {
+            margin-top: 30px;
+        }
+        .comment {
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .comment-form {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .comment-form textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            resize: none;
+            margin-bottom: 15px;
+        }
+        .comment-form button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -86,7 +115,7 @@
                 <p class="card-text">{{ post.content }}</p>
             </div>
             <div class="card-footer text-muted">
-                منتشر شده در: {{ post.published_date }}
+                منتشر شده در: {{ post.created_at }}
             </div>
         </div>
 
@@ -95,8 +124,32 @@
             <a href="{% url 'post_edit' pk=post.id %}" class="btn btn-warning">ویرایش پست</a>
             <a href="{% url 'post_delete' pk=post.id %}" class="btn btn-danger">حذف پست</a>
         </div>
+
+        <!-- نمایش کامنت‌ها -->
+        <div class="comments-section">
+            <h3>نظرات</h3>
+            {% for comment in post.comments.all %}
+                <div class="comment">
+                    <p><strong>{{ comment.user }}:</strong> {{ comment.content }}</p>
+                    <p class="text-muted">ارسال شده در: {{ comment.created_at|date:"d M Y H:i" }}</p>
+                </div>
+            {% empty %}
+                <p>هنوز نظری ثبت نشده است.</p>
+            {% endfor %}
+        </div>
+
+        <!-- فرم ارسال نظر -->
+        <div class="comment-form">
+            <h3>افزودن نظر</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <!-- کادر نوشتن نظر -->
+                <textarea name="comment" placeholder="نظر خود را اینجا بنویسید..."></textarea>
+                <!-- دکمه ارسال نظر -->
+                <button type="submit" class="btn btn-primary">ارسال نظر</button>
+            </form>
+        </div>
+
     </div>
 </body>
 </html>
-
-
